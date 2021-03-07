@@ -3,8 +3,8 @@ const router = express.Router();
 const changeCustomerAddress = require('../../actions/dialogflow/changeCustomerAddress');
 
 /**
- * @route       POST desk/callback
- * @description Callback webhook for Sendbird Desk
+ * @route       POST dialogflow/fullfilment
+ * @description Processes fullfilment webhooks from Google Dialogflow
  */
 router.post('/fullfilment', async (req, res) => {
   try {
@@ -17,8 +17,15 @@ router.post('/fullfilment', async (req, res) => {
       case '5dca1ef6-64f0-44bc-9545-ae4df756be93':
         const address = req.body.queryResult.parameters.address;
         const customer = req.body.originalDetectIntentRequest.payload.username;
-        console.log('ADDRESS', address);
-        console.log('CUSTOMER', customer);
+        changeCustomerAddress(customer, address).then((response) => {
+          if (response.status === 200) {
+            res.sendStatus(200);
+          } else {
+            res.sendStatus(500);
+          }
+        });
+
+      default:
         res.sendStatus(200);
     }
   } catch (err) {

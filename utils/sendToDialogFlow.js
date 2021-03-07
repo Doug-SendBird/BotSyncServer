@@ -1,6 +1,5 @@
 const dialogflow = require('@google-cloud/dialogflow');
 const { v4: uuidv4 } = require('uuid');
-const logger = require('./logger')(__filename);
 
 const sendToDialogFlow = (message, username, contexts) => {
   return new Promise((resolve, reject) => {

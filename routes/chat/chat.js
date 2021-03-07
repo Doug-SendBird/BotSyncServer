@@ -55,8 +55,7 @@ router.post('/callback', async (req, res) => {
               res.sendStatus(200);
             })
             .catch((err) => {
-              console.log(err.response.status);
-              console.log(err.response.statusText);
+              console.log(err.response.status, err.response.statusText);
             });
         })
         .catch((err) => {

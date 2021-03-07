@@ -17,6 +17,13 @@ app.use('/chat', require('./routes/chat/chat'));
 app.use('/desk', require('./routes/desk/desk'));
 app.use('/dialogflow', require('./routes/dialogflow/dialogflow'));
 
+// Default route to test if webserver is accessible
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Hello World',
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
 });

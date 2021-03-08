@@ -5,7 +5,13 @@ const sendToDialogFlow = (message, username, contexts) => {
   return new Promise((resolve, reject) => {
     try {
       const sessionId = uuidv4();
-      const sessionClient = new dialogflow.SessionsClient();
+      const sessionClient = new dialogflow.SessionsClient({
+        projectId: process.env.GCLOUD_PROJECT_ID,
+        credentials: {
+          client_email: process.env.GCLOUD_CLIENT_EMAIL,
+          private_key: process.env.GCLOUD_PRIVATE_KEY,
+        },
+      });
       const sessionPath = sessionClient.projectAgentSessionPath(
         process.env.GCLOUD_PROJECT_ID,
         sessionId

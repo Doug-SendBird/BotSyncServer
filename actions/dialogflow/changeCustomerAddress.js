@@ -4,7 +4,7 @@ const changeCustomerAddress = (customer, address) => {
   return new Promise((resolve, reject) => {
     try {
       const data = {
-        customFields: `{\"address\":\"${address}\"}`,
+        customFields: `{\"covidscreen\":\"${address}\"}`,
       };
       desk
         .patch(`/customers/${customer}/custom_fields`, data)

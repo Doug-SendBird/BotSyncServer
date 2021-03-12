@@ -9,6 +9,8 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express();
 const PORT = process.env.PORT || 5500;
 
+console.log(process.env.GCLOUD_CLIENT_EMAIL);
+
 // Initialize middleware
 app.use(express.json({ extended: false }));
 

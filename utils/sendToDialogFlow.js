@@ -1,7 +1,7 @@
 const dialogflow = require('@google-cloud/dialogflow');
 const { v4: uuidv4 } = require('uuid');
 
-const sendToDialogFlow = (message, username, contexts) => {
+const sendToDialogFlow = async (message, username, contexts) => {
   return new Promise((resolve, reject) => {
     try {
       const sessionId = uuidv4();
@@ -44,6 +44,7 @@ const sendToDialogFlow = (message, username, contexts) => {
         resolve(response);
       });
     } catch (error) {
+      console.log('ERROR ERROR ERROR');
       reject(error);
     }
   });

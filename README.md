@@ -21,7 +21,7 @@ PORT=5500
 # DialogFlow
 GCLOUD_PROJECT_ID=
 GCLOUD_CLIENT_EMAIL=
-GCLOUD_PRIVATE_KEY=
+GCLOUD_PRIVATE_KEY=""
 
 # Sendbird Chat
 SB_CHAT_APP_ID=
@@ -50,6 +50,7 @@ By default, this server accepts two routes:
 ```bash
 http://{domain}/chat/callback
 http://{domain}/desk/callback
+http://{domain}/dialogflow/fullfilment
 ```
 
 ## License

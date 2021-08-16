@@ -6,15 +6,15 @@ const changeCustomerAddress = require('../../actions/dialogflow/changeCustomerAd
  * @route       POST dialogflow/fullfilment
  * @description Processes fullfilment webhooks from Google Dialogflow
  */
-router.post('/fullfilment', async (req, res) => {
+router.post('/fulfillment', async (req, res) => {
   try {
-    const intentName = req.body.queryResult.intent.name.replace(
-      `projects/${process.env.GCLOUD_PROJECT_ID}/agent/intents/`,
-      ''
-    );
-
+    //const intentName = req.body.queryResult.intent.name.replace(
+    //  `projects/${process.env.GCLOUD_PROJECT_ID}/agent/intents/`,
+    //  ''
+    //);
+    const intentName = req.body.queryResult.intent.displayName;
     switch (intentName) {
-      case '5dca1ef6-64f0-44bc-9545-ae4df756be93':
+      case 'Address change': //'065d2e70-f191-49e0-a20d-ddef08d03571':
         const address = req.body.queryResult.parameters.address;
         const customer = req.body.originalDetectIntentRequest.payload.username;
         changeCustomerAddress(customer, address).then((response) => {
@@ -24,6 +24,7 @@ router.post('/fullfilment', async (req, res) => {
             res.sendStatus(500);
           }
         });
+        break;
 
       default:
         res.sendStatus(200);

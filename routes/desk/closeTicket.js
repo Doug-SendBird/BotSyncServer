@@ -1,13 +1,10 @@
 const { desk } = require('../../utils/axios');
 
-const changeCustomerAddress = (customer, address) => {
+const closeTicket = (ticketId) => {
   return new Promise((resolve, reject) => {
     try {
-      const data = {
-        customFields: `{\"accountnum\":\"${address}\"}`,
-      };
       desk
-        .patch(`/customers/${customer}/custom_fields`, data)
+        .patch(`tickets/${ticketId}/close`, {})
         .then((response) => {
           resolve(response);
         })
@@ -20,4 +17,4 @@ const changeCustomerAddress = (customer, address) => {
   });
 };
 
-module.exports = changeCustomerAddress;
+module.exports = closeTicket;

@@ -1,13 +1,11 @@
 const { desk } = require('../../utils/axios');
 
-const changeCustomerAddress = (customer, address) => {
+const transferToAgent = (ticketId) => {
   return new Promise((resolve, reject) => {
     try {
-      const data = {
-        customFields: `{\"accountnum\":\"${address}\"}`,
-      };
+      console.log('really truly about to transfer ticket');
       desk
-        .patch(`/customers/${customer}/custom_fields`, data)
+        .patch(`tickets/${ticketId}/cancel`, {})
         .then((response) => {
           resolve(response);
         })
@@ -20,4 +18,4 @@ const changeCustomerAddress = (customer, address) => {
   });
 };
 
-module.exports = changeCustomerAddress;
+module.exports = transferToAgent;

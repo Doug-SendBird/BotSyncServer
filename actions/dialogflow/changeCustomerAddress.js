@@ -4,7 +4,7 @@ const changeCustomerAddress = (customer, address) => {
   return new Promise((resolve, reject) => {
     try {
       const data = {
-        customFields: `{\"accountnum\":\"${address}\"}`,
+        customFields: `{\"accountnum\":\"${address}\"}`, //this updates a custom field names "accountnum"; this must match a field in your Desk app.
       };
       desk
         .patch(`/customers/${customer}/custom_fields`, data)
